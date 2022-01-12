@@ -1,0 +1,30 @@
+<form (submit)="handleSubmit()">
+  <div class="input-group mb-5">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Enter todo"
+      name="inputTodo"
+      [(ngModel)]="inputTodo"
+    />
+    <button class="btn btn-primary" type="submit">Add</button>
+  </div>
+</form>
+<div *ngFor="let todo of todos; let i = index">
+  <div class="d-flex mb-3">
+    <div class="text-primary me-3">{{ i + 1 }}-</div>
+    <div
+      class="{{
+        todo.isDone ? 'text-decoration-line-through' : ''
+      }} flex-grow-1"
+    >
+      {{ todo.text }}
+    </div>
+    <div
+      class="btn {{ todo.isDone ? 'btn-secondary' : 'btn-warning' }}"
+      (click)="handleDone(i)"
+    >
+      {{ todo.isDone ? "mark as pending" : "mark as done" }}
+    </div>
+  </div>
+</div>
